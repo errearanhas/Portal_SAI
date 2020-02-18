@@ -43,7 +43,7 @@ def main():
 
     for i in range(number_acordaos_in_page):
         try:
-            xpath = '//*[@id="lista-resultado__itens"]/ul/li[' + str(i) + ']/div/div[2]/button'
+            xpath = '//*[@id="lista-resultado__itens"]/ul/li[' + str(i+1) + ']/div/div[2]/button'
             click_download(driver, xpath)
         except:
             goto_next_page(driver)
