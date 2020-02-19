@@ -31,7 +31,7 @@ def goto_next_page(driver):
 
 def count_acordaos_current_page(driver):
     """
-    Gets the number of 'acórdãos' in current page
+    Get the number of 'acórdãos' in current page
     """
     page = BeautifulSoup(driver.page_source, 'lxml')
     number_acordaos_in_page = len(page.find_all('button', {'title': 'Fazer download do documento.'}))
