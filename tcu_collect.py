@@ -6,6 +6,9 @@ import time
 
 
 def click_download(driver, xpath):
+    """
+    Click in download button a chooses DOCX as file format
+    """
     button = driver.find_element_by_xpath(xpath)
     button.click()
     button_word = driver.find_element_by_xpath("//*[@title='Fazer download do documento no formato WORD.']")
@@ -14,6 +17,9 @@ def click_download(driver, xpath):
 
 
 def goto_next_page(driver):
+    """
+    Click in the next page button
+    """
     try:
         next_page = driver.find_element_by_xpath(
             '//*[@id="container"]/div[1]/div[2]/div/header/div[2]/mat-paginator/div/div/div[2]/button[2]')
@@ -24,6 +30,9 @@ def goto_next_page(driver):
 
 
 def count_acordaos_current_page(driver):
+    """
+    Gets the number of 'acórdãos' in current page
+    """
     page = BeautifulSoup(driver.page_source, 'lxml')
     number_acordaos_in_page = len(page.find_all('button', {'title': 'Fazer download do documento.'}))
     return number_acordaos_in_page
