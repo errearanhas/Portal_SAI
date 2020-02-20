@@ -87,9 +87,10 @@ def replaces_in_corpus(corpus):
     return corpus
 
 
-blacklist = ['_','–',' ','Augusto','augusto','Carlos' "$",")","(",'/2015',"walton",'alencar','alves',".","(...)","[...]", 'sobre', 'sr.', 'art.', 'que', 'ser', 'ii', 'ii,', 'inciso,', 'de$', 'nº',
-            '(peça','§','(cpf','tc','maria','josé','costa','que,','quanto','(',')','75.','19.','-.','(peças-11),','silva', 'tcu', 'ainda','além', 'qualquer','parte','partes','item','tais','dias','tal',
-            'ano','cada']
+blacklist = ['_','–',' ','Augusto','augusto','Carlos' "$",")","(",'/2015',"walton",'alencar','alves',".","(...)",
+             "[...]", 'sobre', 'sr.', 'art.', 'que', 'ser', 'ii', 'ii,', 'inciso,', 'de$', 'nº','(peça','§',
+             '(cpf','tc','maria','josé','costa','que,','quanto','(',')','75.','19.','-.','(peças-11),',
+             'silva', 'tcu', 'ainda','além', 'qualquer','parte','partes','item','tais','dias','tal', 'ano','cada']
 
 
 def remove_blacklist(corpus, blacklist):
@@ -104,9 +105,11 @@ def remove_blacklist(corpus, blacklist):
     return text_total
 
 
-def filter_text_chunks(texts, topic):
+def filter_text_chunks(texts, topic='PARTES'):
     """
-    applies user defined hard coded filter to pop out words that doesnt help the analysis (domain knowledge)
+    Gets text within the selected topic: PARTES, NEPOTISMO or MULTAS.
+    Optionally, can also apply user defined list of terms about 'PARTES' (based in domain knowledge), in order to
+    explicit consider chunks of text that include them.
     """
     filt_part1 = ['partes_relacionadas']
     filt_part2 = ['parte_relacionada']
@@ -126,20 +129,15 @@ def filter_text_chunks(texts, topic):
                      'diferentes das praticadas no mercado']
 
     filt_nep = ['nepotismo']
-    filt_nep_add = ['cargo em comissão', 'contratação', 'contratado', 'vício', 'contratação de parentes, consanguineos ou por afinidade',
-                    'contratados irregularmente', 'favorecimento de parentes', 'apadrinhamento', 'ausência de processo seletivo', 'irmã',
-                    'primo', 'tio', 'proibição', 'vedação', 'violados', 'princíipios constitucionais', 'conflito de interesses', 'transnepotismo',
-                    'moralidade administrativa', 'nomeação em cargo de comissão', 'cunhada', 'noiva', 'relação']
-
     filt_mult = ['multas']
-    filt_mult_add = ['multa', '$', 'penalidade', 'punição']
+
     text_term=[]
     if topic == 'PARTES':
         text_term = [j for j in texts if all(i in j for i in filt_part1 or filt_part2) and any(i in j for i in filt_part_add)]
     elif topic == 'NEPOTISMO':
-        text_term = [j for j in texts if all(i in j for i in filt_nep) and any(i in j for i in filt_nep_add)]
+        text_term = [j for j in texts if all(i in j for i in filt_nep)]
     elif topic == 'MULTAS':
-        text_term = [j for j in texts if all(i in j for i in filt_mult) and any(i in j for i in filt_mult_add)]
+        text_term = [j for j in texts if all(i in j for i in filt_mult)]
     return text_term
 
 
