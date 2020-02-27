@@ -3,7 +3,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support import expected_conditions as ec
 from bs4 import BeautifulSoup
 import time
 
@@ -13,11 +13,11 @@ def click_download(driver, xpath):
     Click in download button and chooses DOCX as file format
     """
     # button = driver.find_element_by_xpath(xpath)
-    button = WebDriverWait(driver, 60).until(EC.element_to_be_clickable((By.XPATH, xpath)))
+    button = WebDriverWait(driver, 60).until(ec.element_to_be_clickable((By.XPATH, xpath)))
     driver.execute_script("arguments[0].click();", button)
     # button.click()
     button_word = driver.find_element_by_xpath("//*[@title='Fazer download do documento no formato WORD.']")
-    #button_word.click()
+    # button_word.click()
     driver.execute_script("arguments[0].click();", button_word)
     return
 
@@ -66,7 +66,7 @@ def main():
 
     next_page_xpath = '//*[@id="container"]/div[1]/div[2]/div/header/div[2]/mat-paginator/div/div/div[2]/button[2]'
 
-    while WebDriverWait(driver, 60).until(EC.element_to_be_clickable((By.XPATH, next_page_xpath))):
+    while WebDriverWait(driver, 60).until(ec.element_to_be_clickable((By.XPATH, next_page_xpath))):
         download_acordaos_in_page(number_acordaos_in_page, driver)
         time.sleep(15)
         goto_next_page(driver)
@@ -75,8 +75,8 @@ def main():
     driver.close()
     return
 
+
 if __name__ == "__main__":
-    # url_acordaos = "https://pesquisa.apps.tcu.gov.br/#/resultado/acordao-completo/%2522partes%2520relacionadas%2522/%2520/%2520"
     url_acordaos = "https://pesquisa.apps.tcu.gov.br/#/resultado/acordao-completo/%2522conflito%2520de%2520interesse%2522/DTRELEVANCIA%253A%255B20080101%2520to%252020190812%255D/%2520"
     url = url_acordaos
     main()
