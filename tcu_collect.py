@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from bs4 import BeautifulSoup
+import itertools
 import time
 
 
@@ -27,11 +28,13 @@ def goto_next_page(driver):
     Click in the next page button
     """
     try:
-        next_page = driver.find_element_by_xpath(
-            '//*[@id="container"]/div[1]/div[2]/div/header/div[2]/mat-paginator/div/div/div[2]/button[2]')
-        next_page.click()
+        next_page = WebDriverWait(driver, 60).until(ec.visibility_of_element_located((By.XPATH, '//*[@id="container"]/div[1]/div[2]/div/header/div[2]/mat-paginator/div/div/div[2]/button[2]')))
+        #next_page = driver.find_element_by_xpath('//*[@id="container"]/div[1]/div[2]/div/header/div[2]/mat-paginator/div/div/div[2]/button[2]')
+        driver.execute_script("arguments[0].click();", next_page)
+        # next_page.click()
     except:
-        pass
+        print("Não clicou próxima página!")
+        return 1
     return
 
 
@@ -48,7 +51,7 @@ def download_acordaos_in_page(number_acordaos_in_page, driver):
     for i in range(number_acordaos_in_page):
         xpath = '//*[@id="lista-resultado__itens"]/ul/li[' + str(i+1) + ']/div/div[2]/button'
         click_download(driver, xpath)
-        time.sleep(10)
+        time.sleep(20)
     return
 
 
@@ -64,12 +67,14 @@ def main():
 
     number_acordaos_in_page = count_acordaos_current_page(driver)
 
-    next_page_xpath = '//*[@id="container"]/div[1]/div[2]/div/header/div[2]/mat-paginator/div/div/div[2]/button[2]'
-
-    while WebDriverWait(driver, 60).until(ec.element_to_be_clickable((By.XPATH, next_page_xpath))):
+    for idx, val in enumerate(itertools.cycle(range(81))):
         download_acordaos_in_page(number_acordaos_in_page, driver)
-        time.sleep(15)
-        goto_next_page(driver)
+        time.sleep(20)
+        if goto_next_page(driver) == 1:
+            break
+        time.sleep(20)
+        if idx > 810:
+            break
 
     print('Done ---- ' + time.ctime(time.time()))
     driver.close()
