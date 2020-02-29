@@ -20,7 +20,7 @@ def fetch_acordao(url):
     return name
 
 
-def get_in_multiprocess(url_list, threads=5):
+def get_in_multiprocess(url_list, threads=4):
     print('Starting process ---- ' + time.ctime(time.time()))
     results = ThreadPool(threads).imap_unordered(fetch_acordao, url_list)
     count = 0
