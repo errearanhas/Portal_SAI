@@ -12,6 +12,8 @@ from string import punctuation
 import re
 import pyLDAvis.gensim
 import matplotlib.pyplot as plt
+import nltk
+nltk.download('stopwords')
 
 
 def get_docx_files(folder):
@@ -84,6 +86,11 @@ def replaces_in_corpus(corpus):
     corpus = [i.lower().replace("mercado,", "mercado") for i in corpus]
     corpus = [i.lower().replace("concessionária ", "concessionárias ") for i in corpus]
     corpus = [i.lower().replace("bndespar ", "bndes ") for i in corpus]
+    corpus = [i.lower().replace("conflito de interesse", "conflito_int") for i in corpus]
+    corpus = [i.lower().replace("conflito de interesses", "conflito_int") for i in corpus]
+    corpus = [i.lower().replace("conflito", "conflito_int") for i in corpus]
+    corpus = [i.lower().replace("interesses", "conflito_int") for i in corpus]
+    corpus = [i.lower().replace("interesse", "conflito_int") for i in corpus]
     return corpus
 
 
@@ -105,7 +112,7 @@ def remove_blacklist(corpus, blacklist):
     return text_total
 
 
-def filter_text_chunks(texts, topic='PARTES'):
+def filter_text_chunks(text_total, topic='PARTES'):
     """
     Gets text within the selected topic: PARTES, NEPOTISMO or MULTAS.
     Optionally, can also apply user defined list of terms about 'PARTES' (based in domain knowledge), in order to
@@ -130,14 +137,16 @@ def filter_text_chunks(texts, topic='PARTES'):
 
     filt_nep = ['nepotismo']
     filt_mult = ['multas']
-
+    filt_inter = ['conflito_int']
     text_term=[]
     if topic == 'PARTES':
-        text_term = [j for j in texts if all(i in j for i in filt_part1 or filt_part2) and any(i in j for i in filt_part_add)]
+        text_term = [j for j in text_total if all(i in j for i in filt_part1 or filt_part2) and any(i in j for i in filt_part_add)]
     elif topic == 'NEPOTISMO':
-        text_term = [j for j in texts if all(i in j for i in filt_nep)]
+        text_term = [j for j in text_total if all(i in j for i in filt_nep)]
     elif topic == 'MULTAS':
-        text_term = [j for j in texts if all(i in j for i in filt_mult)]
+        text_term = [j for j in text_total if all(i in j for i in filt_mult)]
+    elif topic == 'CONF_INTERESSE':
+        text_term = [j for j in text_total if all(i in j for i in filt_inter)]
     return text_term
 
 
@@ -158,7 +167,16 @@ def filter_corpus(text_term, text_total, which_text='TOTAL'):
     return corpus_tfidf
 
 
-def generate_lda(total_topics, which_text='TOTAL'):
+def gera_dicts(text_term, text_total):
+    """
+    generates dictionaries with text and total corpus, for posterior analysis
+    """
+    dict_term = corpora.Dictionary(text_term)
+    dict_total = corpora.Dictionary(text_total)
+    return dict_term, dict_total
+
+
+def generate_lda(total_topics, text_term, text_total, which_text='TOTAL'):
     """
     LDA corpus generation based on choice of whole corpus data or filtered corpus data
     """
@@ -167,15 +185,13 @@ def generate_lda(total_topics, which_text='TOTAL'):
         corpus_term = [dict_term.doc2bow(i) for i in text_term]
         lda_term = models.LdaModel(corpus_term, id2word=dict_term, num_topics=total_topics)
         corpus_lda_term = lda_term[corpus_term]  # create a double wrapper over the original corpus: bow->tfidf->fold-in-lsi\
-        corpus_out = corpus_lda_term
-        out = [lda_term, corpus_out]
+        out = [lda_term, corpus_lda_term]
     elif which_text == 'TOTAL':
         dict_total = corpora.Dictionary(text_total)
         corpus_total = [dict_total.doc2bow(i) for i in text_total]
         lda_total = models.LdaModel(corpus_total, id2word=dict_total, num_topics=total_topics)
         corpus_lda_total = lda_total[corpus_total]  # create a double wrapper over the original corpus: bow->tfidf->fold-in-lsi
-        corpus_out = corpus_lda_total
-        out = [lda_term, corpus_lda_total]
+        out = [lda_total, corpus_lda_total]
     return out
 
 
@@ -184,8 +200,9 @@ def show_N_terms(lda_term, lda_total, total_topics):
     show terms by topic, in relevance order
     """
     # Show important words in the topics:
-    print(lda_term.show_topics(total_topics))
-    print(lda_total.show_topics(total_topics))
+    print("Term: ", lda_term.show_topics(total_topics))
+    print("-----")
+    print("Total: ", lda_total.show_topics(total_topics))
     return
 
 
@@ -206,18 +223,18 @@ def prepare_data_clustermap(lda_term, lda_total, total_topics):
     return df_lda_term, df_lda_total
 
 
-def generate_clustermap(which_text='TOTAL'):
+def generate_clustermap(df_lda_total, df_lda_term, which_text='TOTAL'):
     """
     clustermap generation, base on whole data or on filtered corpus data
     """
-    if  which_text='TERM':
+    if which_text=='TERM':
         g = sns.clustermap(df_lda_term.corr(), standard_scale=1, center=0, cmap="RdBu",
-                           metric='cosine', linewidths=.05, figsize=(15, 15))
+                          metric='cosine', linewidths=.05, figsize=(15, 15))
         plt.setp(g.ax_heatmap.yaxis.get_majorticklabels(), rotation=0)
         # plt.savefig('nepotismo_filtro_sem_arquivo_grande.jpg')
         plt.show()
 
-    if  which_text='TOTAL':
+    if which_text=='TOTAL':
         g = sns.clustermap(df_lda_total.corr(), standard_scale=1, center=0, cmap="RdBu",
                            metric='cosine', linewidths=.05, figsize=(15, 15))
         plt.setp(g.ax_heatmap.yaxis.get_majorticklabels(), rotation=0)
@@ -226,15 +243,15 @@ def generate_clustermap(which_text='TOTAL'):
     return
 
 
-def generate_lda_vis(which_text='TOTAL'):
+def generate_lda_vis(lda_total, corpus_lda_total, lda_term, corpus_lda_term, dict_term, dict_total, which_text='TOTAL'):
     """
     LDA model visualization
     """
-    if which_text='TOTAL':
+    if which_text=='TOTAL':
         pyLDAvis.enable_notebook()
-        panel_tot = pyLDAvis.gensim.prepare(lda_total, corpus_total, dict_total, mds='PCoA')
+        panel_tot = pyLDAvis.gensim.prepare(lda_total, corpus_lda_total, dict_total, mds='PCoA')
         panel_tot
-    elif which_text='TERM'
+    elif which_text=='TERM':
         pyLDAvis.enable_notebook()
         panel = pyLDAvis.gensim.prepare(lda_term, corpus_lda_term, dict_term, mds='PCoA')
         panel
