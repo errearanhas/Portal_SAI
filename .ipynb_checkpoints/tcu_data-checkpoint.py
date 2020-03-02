@@ -34,7 +34,7 @@ def get_docx_files(folder):
     return docx_list
 
 
-def generate_corpus(txt_file, docx_list):
+def generate_corpus(txt_output_file, docx_list):
     """
     generate a corpus from the docx files and exports as a txt file
     """
@@ -44,7 +44,7 @@ def generate_corpus(txt_file, docx_list):
             text = i.paragraphs[j].text
             corpus.append(text)
 
-    with open(txt_file, 'w') as file:
+    with open(txt_output_file, 'w') as file:
         for listitem in corpus:
             file.write('%s\n' % listitem)
     return corpus
@@ -70,34 +70,46 @@ def replaces_in_corpus(corpus):
     """
     manual term replacements in corpus
     """
-    corpus = [i.lower().replace("partes relacionadas ", "partes_relacionadas ") for i in corpus]
-    corpus = [i.lower().replace("parte relacionada ", "partes_relacionadas ") for i in corpus]
-    corpus = [i.lower().replace("fonte:", "fontes") for i in corpus]
-    corpus = [i.lower().replace("contratação", "contratações") for i in corpus]
-    corpus = [i.lower().replace("contrato ", "contratações") for i in corpus]
-    corpus = [i.lower().replace("contratos", "contratações") for i in corpus]
-    corpus = [i.lower().replace("contratoss", "contratações") for i in corpus]
-    corpus = [i.lower().replace("princípio", "princípios") for i in corpus]
-    corpus = [i.lower().replace("empresa ", "empresas") for i in corpus]
-    corpus = [i.lower().replace("acionista ", "acionistas") for i in corpus]
-    corpus = [i.lower().replace("valor ", "valores") for i in corpus]
-    corpus = [i.lower().replace("aeroporto ", "aeroportos ") for i in corpus]
-    corpus = [i.lower().replace("mercado.", "mercado") for i in corpus]
-    corpus = [i.lower().replace("mercado,", "mercado") for i in corpus]
-    corpus = [i.lower().replace("concessionária ", "concessionárias ") for i in corpus]
-    corpus = [i.lower().replace("bndespar ", "bndes ") for i in corpus]
-    corpus = [i.lower().replace("conflito de interesse", "conflito_int") for i in corpus]
-    corpus = [i.lower().replace("conflito de interesses", "conflito_int") for i in corpus]
-    corpus = [i.lower().replace("conflito", "conflito_int") for i in corpus]
-    corpus = [i.lower().replace("interesses", "conflito_int") for i in corpus]
-    corpus = [i.lower().replace("interesse", "conflito_int") for i in corpus]
+    corpus = [i.lower() for i in corpus]
+    corpus = [i.replace("partes relacionadas ", "partes_relacionadas ") for i in corpus]
+    corpus = [i.replace("parte relacionada ", "partes_relacionadas ") for i in corpus]
+    corpus = [i.replace("fonte:", "fontes") for i in corpus]
+    corpus = [i.replace("contratação", "contratações") for i in corpus]
+    corpus = [i.replace("contrato ", "contratações") for i in corpus]
+    corpus = [i.replace("contratos", "contratações") for i in corpus]
+    corpus = [i.replace("contratoss", "contratações") for i in corpus]
+    # corpus = [i.lower().replace("princípio", "princípios") for i in corpus]
+    corpus = [i.replace("empresa ", "empresas") for i in corpus]
+    corpus = [i.replace("acionista ", "acionistas") for i in corpus]
+    corpus = [i.replace("valor ", "valores") for i in corpus]
+    corpus = [i.replace("aeroporto ", "aeroportos ") for i in corpus]
+    corpus = [i.replace("mercado.", "mercado") for i in corpus]
+    corpus = [i.replace("mercado,", "mercado") for i in corpus]
+    corpus = [i.replace("concessionária ", "concessionárias ") for i in corpus]
+    corpus = [i.replace("bndespar ", "bndes ") for i in corpus]
+    corpus = [i.replace("btg pactual", "btg_pactual") for i in corpus]
+    corpus = [i.replace("público,", "público") for i in corpus]
+    corpus = [i.replace("moralidade,", "moralidade") for i in corpus]
+    corpus = [i.replace("alteração,", "alteração") for i in corpus]
+    corpus = [i.replace("inicial,", "inicial") for i in corpus]
+    corpus = [re.sub(r'\bconflito de interesse\b', 'conflito_de_interesses', i) for i in corpus]
+    corpus = [re.sub(r'\bconflito de interesses\b', 'conflito_de_interesses', i) for i in corpus]
+    corpus = [re.sub(r'\bconflitos de interesses\b', 'conflito_de_interesses', i) for i in corpus]
+    corpus = [re.sub(r'\bconflito\b', 'conflito_de_interesses', i) for i in corpus]
+    corpus = [re.sub(r'\bconflitos\b', 'conflito_de_interesses', i) for i in corpus]
+    corpus = [re.sub(r'\binteresses\b', 'conflito_de_interesses', i) for i in corpus]
+    corpus = [re.sub(r'\binteresse\b', 'conflito_de_interesses', i) for i in corpus]
     return corpus
+
 
 
 blacklist = ['_','–',' ','Augusto','augusto','Carlos' "$",")","(",'/2015',"walton",'alencar','alves',".","(...)",
              "[...]", 'sobre', 'sr.', 'art.', 'que', 'ser', 'ii', 'ii,', 'inciso,', 'de$', 'nº','(peça','§',
              '(cpf','tc','maria','josé','costa','que,','quanto','(',')','75.','19.','-.','(peças-11),',
-             'silva', 'tcu', 'ainda','além', 'qualquer','parte','partes','item','tais','dias','tal', 'ano','cada']
+             'silva', 'tcu', 'ainda','além', 'qualquer','parte','partes','item','tais','dias','tal', 'ano','cada',
+             'aroldo', 'raimundo', 'cedraz', 'tiago', 'césar', '(art.', 'pereira', 'ltda.', '13.', 'iii,', 'us$', '(fl.',
+            '20):', 'spe', '(ato', 'nº);']
+
 
 
 def remove_blacklist(corpus, blacklist):
@@ -137,8 +149,8 @@ def filter_text_chunks(text_total, topic='PARTES'):
 
     filt_nep = ['nepotismo']
     filt_mult = ['multas']
-    filt_inter = ['conflito_int']
-    text_term=[]
+    filt_inter = ['conflito_de_interesses', 'conflito', 'interesse', 'interesses', 'conflito de interesse', 'conflito de interesses']
+    text_term = []
     if topic == 'PARTES':
         text_term = [j for j in text_total if all(i in j for i in filt_part1 or filt_part2) and any(i in j for i in filt_part_add)]
     elif topic == 'NEPOTISMO':
@@ -146,7 +158,7 @@ def filter_text_chunks(text_total, topic='PARTES'):
     elif topic == 'MULTAS':
         text_term = [j for j in text_total if all(i in j for i in filt_mult)]
     elif topic == 'CONF_INTERESSE':
-        text_term = [j for j in text_total if all(i in j for i in filt_inter)]
+        text_term = [j for j in text_total if any(i in j for i in filt_inter)]
     return text_term
 
 
@@ -250,9 +262,8 @@ def generate_lda_vis(lda_total, corpus_lda_total, lda_term, corpus_lda_term, dic
     if which_text=='TOTAL':
         pyLDAvis.enable_notebook()
         panel_tot = pyLDAvis.gensim.prepare(lda_total, corpus_lda_total, dict_total, mds='PCoA')
-        panel_tot
+        return panel_tot
     elif which_text=='TERM':
         pyLDAvis.enable_notebook()
         panel = pyLDAvis.gensim.prepare(lda_term, corpus_lda_term, dict_term, mds='PCoA')
-        panel
-    return
+        return panel
