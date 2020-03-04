@@ -95,10 +95,10 @@ def replaces_in_corpus(corpus):
     corpus = [re.sub(r'\bconflito de interesse\b', 'conflito_de_interesses', i) for i in corpus]
     corpus = [re.sub(r'\bconflito de interesses\b', 'conflito_de_interesses', i) for i in corpus]
     corpus = [re.sub(r'\bconflitos de interesses\b', 'conflito_de_interesses', i) for i in corpus]
-    #corpus = [re.sub(r'\bconflito\b', 'conflito_de_interesses', i) for i in corpus]
-    #corpus = [re.sub(r'\bconflitos\b', 'conflito_de_interesses', i) for i in corpus]
-    #corpus = [re.sub(r'\binteresses\b', 'conflito_de_interesses', i) for i in corpus]
-    #corpus = [re.sub(r'\binteresse\b', 'conflito_de_interesses', i) for i in corpus]
+    # corpus = [re.sub(r'\bconflito\b', 'conflito_de_interesses', i) for i in corpus]
+    # corpus = [re.sub(r'\bconflitos\b', 'conflito_de_interesses', i) for i in corpus]
+    # corpus = [re.sub(r'\binteresses\b', 'conflito_de_interesses', i) for i in corpus]
+    # corpus = [re.sub(r'\binteresse\b', 'conflito_de_interesses', i) for i in corpus]
     return corpus
 
 

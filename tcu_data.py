@@ -57,7 +57,7 @@ def load_corpus_file(txt_file):
     # LOAD CORPUS FILE
     # open file and read the content in a list
     corpus = []
-    with open(txt_file, 'r') as filehandle:
+    with open(txt_file, 'r', encoding='utf-8') as filehandle:
         for line in filehandle:
             # remove linebreak which is the last character of the string
             currentplace = line[:-1]
@@ -71,45 +71,29 @@ def replaces_in_corpus(corpus):
     manual term replacements in corpus
     """
     corpus = [i.lower() for i in corpus]
-    corpus = [i.replace("partes relacionadas ", "partes_relacionadas ") for i in corpus]
-    corpus = [i.replace("parte relacionada ", "partes_relacionadas ") for i in corpus]
-    corpus = [i.replace("fonte:", "fontes") for i in corpus]
-    corpus = [i.replace("contratação", "contratações") for i in corpus]
-    corpus = [i.replace("contrato ", "contratações") for i in corpus]
-    corpus = [i.replace("contratos", "contratações") for i in corpus]
-    corpus = [i.replace("contratoss", "contratações") for i in corpus]
-    # corpus = [i.lower().replace("princípio", "princípios") for i in corpus]
+    corpus = [i.replace("contrato ", "contratos") for i in corpus]
     corpus = [i.replace("empresa ", "empresas") for i in corpus]
-    corpus = [i.replace("acionista ", "acionistas") for i in corpus]
     corpus = [i.replace("valor ", "valores") for i in corpus]
-    corpus = [i.replace("aeroporto ", "aeroportos ") for i in corpus]
-    corpus = [i.replace("mercado.", "mercado") for i in corpus]
-    corpus = [i.replace("mercado,", "mercado") for i in corpus]
-    corpus = [i.replace("concessionária ", "concessionárias ") for i in corpus]
-    corpus = [i.replace("bndespar ", "bndes ") for i in corpus]
-    corpus = [i.replace("btg pactual", "btg_pactual") for i in corpus]
     corpus = [i.replace("público,", "público") for i in corpus]
-    corpus = [i.replace("moralidade,", "moralidade") for i in corpus]
-    corpus = [i.replace("alteração,", "alteração") for i in corpus]
-    corpus = [i.replace("inicial,", "inicial") for i in corpus]
+    corpus = [i.replace("público.", "público") for i in corpus]
+    corpus = [i.replace("pública,", "público") for i in corpus]
+    corpus = [i.replace("projeto,", "projetos") for i in corpus]
+    corpus = [i.replace("princípio,", "princípios") for i in corpus]
     corpus = [re.sub(r'\bconflito de interesse\b', 'conflito_de_interesses', i) for i in corpus]
     corpus = [re.sub(r'\bconflito de interesses\b', 'conflito_de_interesses', i) for i in corpus]
     corpus = [re.sub(r'\bconflitos de interesses\b', 'conflito_de_interesses', i) for i in corpus]
-    # corpus = [re.sub(r'\bconflito\b', 'conflito_de_interesses', i) for i in corpus]
-    # corpus = [re.sub(r'\bconflitos\b', 'conflito_de_interesses', i) for i in corpus]
-    # corpus = [re.sub(r'\binteresses\b', 'conflito_de_interesses', i) for i in corpus]
-    # corpus = [re.sub(r'\binteresse\b', 'conflito_de_interesses', i) for i in corpus]
+    corpus = [re.sub(r'\bconflito\b', 'conflito_de_interesses', i) for i in corpus]
+    corpus = [re.sub(r'\binteresses\b', 'conflito_de_interesses', i) for i in corpus]
+    corpus = [re.sub(r'\binteresse\b', 'conflito_de_interesses', i) for i in corpus]
     return corpus
 
 
-
 blacklist = ['_','–',' ','Augusto','augusto','Carlos' "$",")","(",'/2015',"walton",'alencar','alves',".","(...)",
-             "[...]", 'sobre', 'sr.', 'art.', 'que', 'ser', 'ii', 'ii,', 'inciso,', 'de$', 'nº','(peça','§',
+             "[...]", 'sobre', 'sob', 'sr.', 'art.', 'que', 'ser', 'ii', 'ii,', 'inciso,', 'de$', 'nº','(peça','§',
              '(cpf','tc','maria','josé','costa','que,','quanto','(',')','75.','19.','-.','(peças-11),',
              'silva', 'tcu', 'ainda','além', 'qualquer','parte','partes','item','tais','dias','tal', 'ano','cada',
-             'aroldo', 'raimundo', 'cedraz', 'tiago', 'césar', '(art.', 'pereira', 'ltda.', '13.', 'iii,', 'us$', '(fl.',
-            '20):', 'spe', '(ato', 'nº);']
-
+             'aroldo', 'raimundo', 'cedraz', 'tiago', 'césar', 'cpf', 'oliveira', 'paulo', 'astra', '(art.', 'pereira', 'ltda.', '13.', 'iii,', 'us$', '(fl.',
+            '20):', '2º', '2º', 'spe', 'fl.', '(ato', 'nº);']
 
 
 def remove_blacklist(corpus, blacklist):
@@ -126,7 +110,7 @@ def remove_blacklist(corpus, blacklist):
 
 def filter_text_chunks(text_total, topic='PARTES'):
     """
-    Gets text within the selected topic: PARTES, NEPOTISMO or MULTAS.
+    Gets text within the selected topic: PARTES, NEPOTISMO or CONFLITO DE INTERESSES.
     Optionally, can also apply user defined list of terms about 'PARTES' (based in domain knowledge), in order to
     explicit consider chunks of text that include them.
     """
@@ -148,15 +132,12 @@ def filter_text_chunks(text_total, topic='PARTES'):
                      'diferentes das praticadas no mercado']
 
     filt_nep = ['nepotismo']
-    filt_mult = ['multas']
     filt_inter = ['conflito_de_interesses', 'conflito', 'interesse', 'interesses', 'conflito de interesse', 'conflito de interesses']
     text_term = []
     if topic == 'PARTES':
         text_term = [j for j in text_total if all(i in j for i in filt_part1 or filt_part2) and any(i in j for i in filt_part_add)]
     elif topic == 'NEPOTISMO':
         text_term = [j for j in text_total if all(i in j for i in filt_nep)]
-    elif topic == 'MULTAS':
-        text_term = [j for j in text_total if all(i in j for i in filt_mult)]
     elif topic == 'CONF_INTERESSE':
         text_term = [j for j in text_total if any(i in j for i in filt_inter)]
     return text_term
@@ -243,14 +224,14 @@ def generate_clustermap(df_lda_total, df_lda_term, which_text='TOTAL'):
         g = sns.clustermap(df_lda_term.corr(), standard_scale=1, center=0, cmap="RdBu",
                           metric='cosine', linewidths=.05, figsize=(15, 15))
         plt.setp(g.ax_heatmap.yaxis.get_majorticklabels(), rotation=0)
-        # plt.savefig('nepotismo_filtro_sem_arquivo_grande.jpg')
+        # plt.savefig('clustermap_term.jpg')
         plt.show()
 
     if which_text=='TOTAL':
         g = sns.clustermap(df_lda_total.corr(), standard_scale=1, center=0, cmap="RdBu",
                            metric='cosine', linewidths=.05, figsize=(15, 15))
         plt.setp(g.ax_heatmap.yaxis.get_majorticklabels(), rotation=0)
-        # plt.savefig('nepotismo_total_sem_arquivo_grande.jpg')
+        # plt.savefig('clustermap_total.jpg')
         plt.show()
     return
 
