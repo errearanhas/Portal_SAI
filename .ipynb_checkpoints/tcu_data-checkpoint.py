@@ -57,7 +57,7 @@ def load_corpus_file(txt_file):
     # LOAD CORPUS FILE
     # open file and read the content in a list
     corpus = []
-    with open(txt_file, 'r') as filehandle:
+    with open(txt_file, 'r', encoding='utf-8') as filehandle:
         for line in filehandle:
             # remove linebreak which is the last character of the string
             currentplace = line[:-1]
@@ -66,49 +66,65 @@ def load_corpus_file(txt_file):
     return corpus
 
 
-def replaces_in_corpus(corpus):
+def replaces_in_corpus(corpus, topic='PARTES'):
     """
     manual term replacements in corpus
     """
     corpus = [i.lower() for i in corpus]
-    corpus = [i.replace("partes relacionadas ", "partes_relacionadas ") for i in corpus]
-    corpus = [i.replace("parte relacionada ", "partes_relacionadas ") for i in corpus]
-    corpus = [i.replace("fonte:", "fontes") for i in corpus]
-    corpus = [i.replace("contratação", "contratações") for i in corpus]
-    corpus = [i.replace("contrato ", "contratações") for i in corpus]
-    corpus = [i.replace("contratos", "contratações") for i in corpus]
-    corpus = [i.replace("contratoss", "contratações") for i in corpus]
-    # corpus = [i.lower().replace("princípio", "princípios") for i in corpus]
-    corpus = [i.replace("empresa ", "empresas") for i in corpus]
-    corpus = [i.replace("acionista ", "acionistas") for i in corpus]
-    corpus = [i.replace("valor ", "valores") for i in corpus]
-    corpus = [i.replace("aeroporto ", "aeroportos ") for i in corpus]
-    corpus = [i.replace("mercado.", "mercado") for i in corpus]
-    corpus = [i.replace("mercado,", "mercado") for i in corpus]
-    corpus = [i.replace("concessionária ", "concessionárias ") for i in corpus]
-    corpus = [i.replace("bndespar ", "bndes ") for i in corpus]
-    corpus = [i.replace("btg pactual", "btg_pactual") for i in corpus]
-    corpus = [i.replace("público,", "público") for i in corpus]
-    corpus = [i.replace("moralidade,", "moralidade") for i in corpus]
-    corpus = [i.replace("alteração,", "alteração") for i in corpus]
-    corpus = [i.replace("inicial,", "inicial") for i in corpus]
-    corpus = [re.sub(r'\bconflito de interesse\b', 'conflito_de_interesses', i) for i in corpus]
-    corpus = [re.sub(r'\bconflito de interesses\b', 'conflito_de_interesses', i) for i in corpus]
-    corpus = [re.sub(r'\bconflitos de interesses\b', 'conflito_de_interesses', i) for i in corpus]
-    # corpus = [re.sub(r'\bconflito\b', 'conflito_de_interesses', i) for i in corpus]
-    # corpus = [re.sub(r'\bconflitos\b', 'conflito_de_interesses', i) for i in corpus]
-    # corpus = [re.sub(r'\binteresses\b', 'conflito_de_interesses', i) for i in corpus]
-    # corpus = [re.sub(r'\binteresse\b', 'conflito_de_interesses', i) for i in corpus]
+    if topic == 'PARTES':
+        corpus = [i.replace("partes relacionadas ", "partes_relacionadas ") for i in corpus]
+        corpus = [i.replace("parte relacionada ", "partes_relacionadas ") for i in corpus]
+        corpus = [i.replace("fonte:", "fontes") for i in corpus]
+        corpus = [i.replace("contratação", "contratações") for i in corpus]
+        corpus = [i.replace("contrato ", "contratações") for i in corpus]
+        corpus = [i.replace("contratos", "contratações") for i in corpus]
+        corpus = [i.replace("contratoss", "contratações") for i in corpus]
+        corpus = [i.replace("princípio", "princípios") for i in corpus]
+        corpus = [i.replace("empresa ", "empresas") for i in corpus]
+        corpus = [i.replace("acionista ", "acionistas") for i in corpus]
+        corpus = [i.replace("valor ", "valores") for i in corpus]
+        corpus = [i.replace("aeroporto ", "aeroportos ") for i in corpus]
+        corpus = [i.replace("mercado.", "mercado") for i in corpus]
+        corpus = [i.replace("mercado,", "mercado") for i in corpus]
+        corpus = [i.replace("concessionária ", "concessionárias ") for i in corpus]
+        # corpus = [i.replace("bndespar ","bndes ") for i in corpus] # uncomment this row only if row 165 is used instead of 166 (i.e. filt_part_add list being used for filtering)
+    elif topic == 'NEPOTISMO':
+        corpus = [i.replace("partes relacionadas", "partes_relacionadas") for i in corpus]
+        corpus = [i.replace("parte relacionada", "parte_relacionada") for i in corpus]
+        corpus = [i.replace("ato ", "atos") for i in corpus]
+        corpus = [i.replace("valor ", "valores") for i in corpus]
+        corpus = [i.replace("processo ", "processos") for i in corpus]
+        corpus = [i.replace("cargo ", "cargos") for i in corpus]
+        corpus = [i.replace("princípio ", "princípios ") for i in corpus]
+        corpus = [i.replace("irregularidade ", "irregularidades ") for i in corpus]
+    elif topic == 'CONF_INTERESSE':
+        corpus = [i.replace("contrato ", "contratos") for i in corpus]
+        corpus = [i.replace("empresa ", "empresas") for i in corpus]
+        corpus = [i.replace("valor ", "valores") for i in corpus]
+        corpus = [i.replace("público,", "público") for i in corpus]
+        corpus = [i.replace("público.", "público") for i in corpus]
+        corpus = [i.replace("pública,", "público") for i in corpus]
+        corpus = [i.replace("projeto,", "projetos") for i in corpus]
+        corpus = [i.replace("princípio,", "princípios") for i in corpus]
+        corpus = [re.sub(r'\bconflito de interesse\b', 'conflito_de_interesses', i) for i in corpus]
+        corpus = [re.sub(r'\bconflito de interesses\b', 'conflito_de_interesses', i) for i in corpus]
+        corpus = [re.sub(r'\bconflitos de interesses\b', 'conflito_de_interesses', i) for i in corpus]
+        corpus = [re.sub(r'\binteresses\b', 'conflito_de_interesses', i) for i in corpus]
+        corpus = [re.sub(r'\binteresse\b', 'conflito_de_interesses', i) for i in corpus]
     return corpus
 
 
-
-blacklist = ['_','–',' ','Augusto','augusto','Carlos' "$",")","(",'/2015',"walton",'alencar','alves',".","(...)",
-             "[...]", 'sobre', 'sr.', 'art.', 'que', 'ser', 'ii', 'ii,', 'inciso,', 'de$', 'nº','(peça','§',
+blacklist_conflito = ['_','–',' ','Augusto','augusto','Carlos' "$",")","(",'/2015',"walton",'alencar','alves',".","(...)",
+             "[...]", 'sobre', 'sob', 'sr.', 'art.', 'que', 'ser', 'ii', 'ii,', 'inciso,', 'de$', 'nº','(peça','§',
              '(cpf','tc','maria','josé','costa','que,','quanto','(',')','75.','19.','-.','(peças-11),',
              'silva', 'tcu', 'ainda','além', 'qualquer','parte','partes','item','tais','dias','tal', 'ano','cada',
-             'aroldo', 'raimundo', 'cedraz', 'tiago', 'césar', '(art.', 'pereira', 'ltda.', '13.', 'iii,', 'us$', '(fl.',
-            '20):', 'spe', '(ato', 'nº);']
+             'aroldo', 'raimundo', 'cedraz', 'tiago', 'césar', 'cpf', 'oliveira', 'paulo', 'astra', '(art.', 'pereira',
+             'ltda.', '13.', 'iii,', 'us$', '(fl.','20):', '2º', '2º', 'spe', 'fl.', '(ato', 'nº);']
+
+blacklist_partes = ['_','–',' ','Augusto','augusto','Carlos' "$",")","(",'/2015',"walton",'alencar','alves',".","(...)","[...]",
+             'sobre', 'sr.', 'art.', 'que', 'ser', 'ii', 'ii,', 'inciso,', 'de$', 'nº', '(peça','§','(cpf','tc','maria',
+             'josé','costa','que,','quanto','(',')','75.','19.','-.','(peças-11),','silva', 'tcu', 'ainda','além', 'qualquer',
+             'parte','partes','item','tais','dias','tal', 'ano']
 
 
 
@@ -116,7 +132,7 @@ def remove_blacklist(corpus, blacklist):
     """
     removes a previously defined blacklist from the corpus, and also removes punctuation and shortwords
     """
-    shortword = re.compile(r'\W*\b\w{1,1}\b') # # regex to remove word up to 3 chars (inclusive)
+    shortword = re.compile(r'\W*\b\w{1,1}\b') # regex to remove word up to 1 chars (inclusive)
     stoplist = stopwords.words('portuguese') + list(punctuation) + blacklist
     stoplist.remove('não')
     stoplist.remove('sem')
@@ -126,37 +142,29 @@ def remove_blacklist(corpus, blacklist):
 
 def filter_text_chunks(text_total, topic='PARTES'):
     """
-    Gets text within the selected topic: PARTES, NEPOTISMO or MULTAS.
+    Gets text within the selected topic: PARTES, NEPOTISMO or CONFLITO DE INTERESSES.
     Optionally, can also apply user defined list of terms about 'PARTES' (based in domain knowledge), in order to
     explicit consider chunks of text that include them.
     """
     filt_part1 = ['partes_relacionadas']
     filt_part2 = ['parte_relacionada']
-    filt_part_add = ['participação', 'contratos ', 'contratos', 'contratação ', 'transações', 'contratos', 'dirigente',
-                     'termos e condições de mercado', 'contratos', 'notas explicativas', 'contratação ', 'subcontratação',
-                     'conflito de interesse', 'contratação ', 'contratos', 'contratos', 'acionistas', 'contratos',
-                     'termos e condições de mercado', 'subcontratação', 'transparência ', 'governança', 'contratações',
-                     'fora das condições de mercado', 'contratações', 'riscos', 'coligadas', 'coligadas', 'risco', 'contratações',
-                     'contratos', 'acionistas', 'contratos', 'contoladas', 'parâmetro de mercado', 'acionistas', 'governança corporativa',
-                     'empresas subsidárias', 'condições de mercado', 'acionistas', 'favorecimento indevido', 'condições diferentes',
-                     'obras', 'serviços de engenharia', 'favorecer', 'sócio privado', 'arm´s length', 'relacionamentos',
-                     'grau de parentesco', 'preços superfaturados', 'beneficiar', 'influenciar', 'sócio', 'contratação ',
-                     'sócios comuns', 'acionistas', 'contratos', 'acionistas', 'contratos', 'favorecimento', 'sócios em comum', 'contratações',
-                     'contratos', 'notas explicativas', 'contratação ', 'contratos', 'contratação ', 'subcontratação', 'notas explicativas',
-                     'condições de mercado', 'condições de mercado', 'fornecedores', 'acionistas', 'contratos', 'termos',
-                     'condições diferentes das praticadas no mercado', 'riscos', 'contratos', 'termos e condições de mercado',
-                     'diferentes das praticadas no mercado']
+    filt_part_add = ['acionistas', 'arm´s length', 'beneficiar', 'coligadas', 'condições de mercado', 'condições diferentes',
+                     'condições diferentes das praticadas no mercado', 'conflito de interesse', 'controladas', 'contratação ',
+                     'contratações', 'contratos', 'contratos ', 'diferentes das praticadas no mercado', 'dirigente', 'empresas subsidárias',
+                     'favorecer', 'favorecimento', 'favorecimento indevido', 'fora das condições de mercado', 'fornecedores',
+                     'governança', 'governança corporativa', 'grau de parentesco', 'influenciar', 'notas explicativas', 'obras',
+                     'participação', 'parâmetro de mercado', 'preços superfaturados', 'relacionamentos', 'risco', 'riscos', 'serviços de engenharia',
+                     'subcontratação', 'sócio', 'sócio privado', 'sócios comuns', 'sócios em comum', 'termos', 'termos e condições de mercado',
+                     'transações', 'transparência ']
 
     filt_nep = ['nepotismo']
-    filt_mult = ['multas']
     filt_inter = ['conflito_de_interesses', 'conflito', 'interesse', 'interesses', 'conflito de interesse', 'conflito de interesses']
     text_term = []
     if topic == 'PARTES':
-        text_term = [j for j in text_total if all(i in j for i in filt_part1 or filt_part2) and any(i in j for i in filt_part_add)]
+        # text_term = [j for j in text_total if all(i in j for i in filt_part1 or filt_part2) and any(i in j for i in filt_part_add)]
+        text_term = [j for j in text_total if all(i in j for i in filt_part1 or filt_part2)]
     elif topic == 'NEPOTISMO':
         text_term = [j for j in text_total if all(i in j for i in filt_nep)]
-    elif topic == 'MULTAS':
-        text_term = [j for j in text_total if all(i in j for i in filt_mult)]
     elif topic == 'CONF_INTERESSE':
         text_term = [j for j in text_total if any(i in j for i in filt_inter)]
     return text_term
@@ -243,27 +251,22 @@ def generate_clustermap(df_lda_total, df_lda_term, which_text='TOTAL'):
         g = sns.clustermap(df_lda_term.corr(), standard_scale=1, center=0, cmap="RdBu",
                           metric='cosine', linewidths=.05, figsize=(15, 15))
         plt.setp(g.ax_heatmap.yaxis.get_majorticklabels(), rotation=0)
-        # plt.savefig('nepotismo_filtro_sem_arquivo_grande.jpg')
+        # plt.savefig('clustermap_term.jpg')
         plt.show()
 
     if which_text=='TOTAL':
         g = sns.clustermap(df_lda_total.corr(), standard_scale=1, center=0, cmap="RdBu",
                            metric='cosine', linewidths=.05, figsize=(15, 15))
         plt.setp(g.ax_heatmap.yaxis.get_majorticklabels(), rotation=0)
-        # plt.savefig('nepotismo_total_sem_arquivo_grande.jpg')
+        # plt.savefig('clustermap_total.jpg')
         plt.show()
     return
 
 
-def generate_lda_vis(lda_total, corpus_lda_total, lda_term, corpus_lda_term, dict_term, dict_total, which_text='TOTAL'):
+def generate_lda_vis(lda_term, corpus_lda_term, dict_term):
     """
-    LDA model visualization
+    Intertopic distance generation
     """
-    if which_text=='TOTAL':
-        pyLDAvis.enable_notebook()
-        panel_tot = pyLDAvis.gensim.prepare(lda_total, corpus_lda_total, dict_total, mds='PCoA')
-        return panel_tot
-    elif which_text=='TERM':
-        pyLDAvis.enable_notebook()
-        panel = pyLDAvis.gensim.prepare(lda_term, corpus_lda_term, dict_term, mds='PCoA')
-        return panel
+    pyLDAvis.enable_notebook()
+    panel = pyLDAvis.gensim.prepare(lda_term, corpus_lda_term, dict_term, mds='PCoA')
+    return panel
