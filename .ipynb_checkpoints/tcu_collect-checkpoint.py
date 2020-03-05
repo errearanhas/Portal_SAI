@@ -6,6 +6,8 @@ import time
 import os
 
 
+# Disclaimer: "Acórdãos" dated under 01/01/2008 where manually excluded from this analysis.
+
 df = pd.read_csv('list_acordaos_partes.txt', sep=";", header=None)
 # df = pd.read_csv('list_acordaos_nep.txt', sep=";", header=None)
 # df = pd.read_csv('list_acordaos_conf.txt', sep=";", header=None)
