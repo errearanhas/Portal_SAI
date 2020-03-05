@@ -170,7 +170,29 @@ https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=492495
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=494055
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=494567
-https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=494488
+https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=494488http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20081205\005.958 2007-0-MIN-BZ.rtf
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20081209\016.605 2006-0-AUD-MBC.rtf
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20081128\017.177 2008-2-MIN-AC.rtf
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20081117\014.770 2006-4-AUD-MBC.rtf
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20081022\013-949-2007-5.rtf
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20081010\016-735-2007-2.doc
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080923\015-512-2005-6.doc
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080901\002-323-2005-1-ALC.doc
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080821\013-903-2002-5.doc
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080821\019-919-2005-7.doc
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080731\021-282-2007-6.doc
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080704\004-445-2002-9-RC.doc
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080616\002-135-2005-1-BZ.doc
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080411\010-260-2006-2-MBC.doc
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080328\015-202-2001-0-VC.doc
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080228\TC-028-506-2006-4.doc
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080227\TC-008-382-2005-0.doc
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080220\TC-015-801-2005-9.doc
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080220\TC-012-718-2005-7.doc
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080131\TC-008-548-2007-5.doc
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080131\TC-500-086-1998-2.doc
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20071105\TC-019-946-2005-4.doc
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20070926\TC-012-120-2003-6.doc
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=485378
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=492951
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=492457
@@ -311,26 +333,3 @@ https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=10629
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=9355
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=9107
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20081205\005.958 2007-0-MIN-BZ.rtf
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20081209\016.605 2006-0-AUD-MBC.rtf
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20081128\017.177 2008-2-MIN-AC.rtf
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20081117\014.770 2006-4-AUD-MBC.rtf
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20081022\013-949-2007-5.rtf
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20081010\016-735-2007-2.doc
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080923\015-512-2005-6.doc
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080901\002-323-2005-1-ALC.doc
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080821\013-903-2002-5.doc
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080821\019-919-2005-7.doc
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080731\021-282-2007-6.doc
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080704\004-445-2002-9-RC.doc
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080616\002-135-2005-1-BZ.doc
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080411\010-260-2006-2-MBC.doc
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080328\015-202-2001-0-VC.doc
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080228\TC-028-506-2006-4.doc
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080227\TC-008-382-2005-0.doc
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080220\TC-015-801-2005-9.doc
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080220\TC-012-718-2005-7.doc
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080131\TC-008-548-2007-5.doc
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080131\TC-500-086-1998-2.doc
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20071105\TC-019-946-2005-4.doc
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20070926\TC-012-120-2003-6.doc

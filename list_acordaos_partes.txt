@@ -25,6 +25,8 @@ https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=610602
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=613037
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=609701
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20081205\014.955 2008-5-MIN-MV.rtf
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20081117\002.694 2007-6-MIN-BZ.rtf
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=423921
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=602189
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=600900
@@ -48,6 +50,11 @@ https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=556527
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=556525
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=554969
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20081110\019.230 2007-2-MIN-BZ.rtf
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20081031\007.953 2007-2-MIN-BZ.rtf
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080821\020-840-2007-4-BZ-Agrupados.doc
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080725\008-872-2006-9-AN.doc
+http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080616\000-874-2005-9-AN.doc
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=531106
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=552722
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=543127
@@ -83,10 +90,3 @@ https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=42509
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=36124
 https://contas.tcu.gov.br/sagas/SvlVisualizarRelVotoAcRtf?codFiltro=SAGAS-SESSAO-ENCERRADA&seOcultaPagina=S&item0=23053
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20081205\014.955 2008-5-MIN-MV.rtf
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20081117\002.694 2007-6-MIN-BZ.rtf
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20081110\019.230 2007-2-MIN-BZ.rtf
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20081031\007.953 2007-2-MIN-BZ.rtf
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080821\020-840-2007-4-BZ-Agrupados.doc
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080725\008-872-2006-9-AN.doc
-http://www.tcu.gov.br/Consultas/Juris/Docs/judoc\Acord\20080616\000-874-2005-9-AN.doc
