@@ -14,17 +14,31 @@ df = pd.read_csv('list_acordaos_partes.txt', sep=";", header=None)
 urls = df[0]
 
 
-def fetch_acordao(url):
+def fetch_acordao(url, topic='PARTES'):
     """
     Base function to get "acórdão" URL and download the document
     """
-    name = url.split('=')[-1] + str(".doc")
-    location = name
-    if not os.path.exists(location):
+    if topic == 'PARTES':
+        try:
+            name = url.split('=')[-1]
+        except:
+            try:
+                name = url.split("\\")[-1]
+            except:
+                name = url.split('/')[-1]
+    elif topic == 'NEPOTISMO':
+        try:
+            name = url.split('=')[-1]
+        except:
+            name = url.split("\\")[-1]
+    elif topic == 'CONF_INTERESSE':
+        name = url.split('=')[-1] + str(".doc")
+
+    if not os.path.exists(name):
         r = requests.get(url, allow_redirects=True)
         open(location, 'wb').write(r.content)
         time.sleep(5)
-    return name
+    return 1
 
 
 def get_in_multiprocess(url_list, threads=8):
