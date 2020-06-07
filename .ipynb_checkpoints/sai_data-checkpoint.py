@@ -121,10 +121,17 @@ blacklist_conflict = ['_','–',' ','Augusto','augusto','Carlos' "$",")","(",'/2
              'aroldo', 'raimundo', 'cedraz', 'tiago', 'césar', 'cpf', 'oliveira', 'paulo', 'astra', '(art.', 'pereira',
              'ltda.', '13.', 'iii,', 'us$', '(fl.','20):', '2º', '2º', 'spe', 'fl.', '(ato', 'nº);']
 
+
 blacklist_parties = ['_','–',' ','Augusto','augusto','Carlos' "$",")","(",'/2015',"walton",'alencar','alves',".","(...)","[...]",
              'sobre', 'sr.', 'art.', 'que', 'ser', 'ii', 'ii,', 'inciso,', 'de$', 'nº', '(peça','§','(cpf','tc','maria',
              'josé','costa','que,','quanto','(',')','75.','19.','-.','(peças-11),','silva', 'tcu', 'ainda','além', 'qualquer',
              'parte','partes','item','tais','dias','tal', 'ano']
+
+
+blacklist_nepotism = ['_','–',' ','Augusto','augusto','Carlos' "$",")","(",'/2015',"walton",'alencar','alves',".","(...)","[...]", 'sobre',
+             'sr.', 'art.', 'que', 'ser', 'ii', 'ii,', 'inciso,', 'de$', 'nº', '(peça','§','(cpf','tc','maria','josé','costa','que,',
+             'quanto','relatosr','(',')','75.','19.','-.','(peças-11),','silva','tcu','13.',"paulo","miranda","cpf","2ª","carlos", "fls.",
+             "(fls.",'(fl.','santos',"sra.","oliveira","luiz","iii,",'in','srs.','arts.','cada','13','sendo','sido']
 
 
 def remove_blacklist(corpus, blacklist):
