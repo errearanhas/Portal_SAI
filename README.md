@@ -1,1 +1,1 @@
-Portal TCU project
+Python scripts for the analysis of supreme audit institution decisions
