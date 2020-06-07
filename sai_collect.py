@@ -16,7 +16,7 @@ urls = df[0]
 
 def fetch_acordao(url, topic='RPT'):
     """
-    Base function to get decisions URL and download the document
+    base function to get decisions URL and download the document
     """
     if topic == 'RPT':
         try:
@@ -43,7 +43,7 @@ def fetch_acordao(url, topic='RPT'):
 
 def get_in_multiprocess(url_list, threads=8):
     """
-    Function to fetch decisions in multiprocess task, if computer is able
+    function to fetch decisions in multiprocess task, if computer is able
     """
     print('Starting process ---- ' + time.ctime(time.time()))
     results = ThreadPool(threads).imap_unordered(fetch_acordao, url_list)
@@ -57,7 +57,7 @@ def get_in_multiprocess(url_list, threads=8):
 
 def get_in_queue(url_list):
     """
-    Function to fetch decisions in a queue, without multiprocess functionality
+    function to fetch decisions in a queue, without multiprocess functionality
     """
     for i in tqdm(url_list):
         fetch_acordao(i)
@@ -66,7 +66,7 @@ def get_in_queue(url_list):
 
 def not_fetch_yet(df, url):
     """
-    Function to generate a list of decisions not yet downloaded.
+    function to generate a list of decisions not yet downloaded.
     """
     for i in url:
         name = i.split('=')[-1] + str(".doc")
